@@ -445,6 +445,30 @@ class DB2Grammar extends Grammar
     }
 
     /**
+     * Create the column definition for a json type.
+     *
+     * @param  \Illuminate\Support\Fluent $column
+     *
+     * @return string
+     */
+    protected function typeJson(Fluent $column)
+    {
+        return $this->typeLongText($column);
+    }
+
+    /**
+     * Create the column definition for an uuid type.
+     *
+     * @param  \Illuminate\Support\Fluent $column
+     *
+     * @return string
+     */
+    protected function typeUuid(Fluent $column)
+    {
+        return $this->typeString($column);
+    }
+
+    /**
      * Create the column definition for a string type.
      *
      * @param  \Illuminate\Support\Fluent $column
@@ -465,7 +489,7 @@ class DB2Grammar extends Grammar
      */
     protected function typeText(Fluent $column)
     {
-        $colLength = ($column->length ? $column->length : 16369);
+        $colLength = ($column->length ? $column->length : 16000);
 
         return "varchar($colLength)";
     }
@@ -530,6 +554,18 @@ class DB2Grammar extends Grammar
      * @return string
      */
     protected function typeSmallInteger(Fluent $column)
+    {
+        return 'smallint';
+    }
+
+    /**
+     * Create the column definition for a tiny integer type.
+     *
+     * @param  \Illuminate\Support\Fluent $column
+     *
+     * @return string
+     */
+    protected function typeTinyInteger(Fluent $column)
     {
         return 'smallint';
     }
