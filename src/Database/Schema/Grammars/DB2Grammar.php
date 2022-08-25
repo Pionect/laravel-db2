@@ -910,4 +910,36 @@ EOT;
         return $this->compileExecuteCommand($blueprint, $command);
     }
 
+    /**
+     * Compile the SQL needed to retrieve all table names.
+     *
+     * @return string
+     */
+    public function compileGetAllTables()
+    {
+        return 'select table_name from information_schema.tables where table_schema = upper(?)';
+    }
+
+    /**
+     * Compile the SQL needed to drop a table.
+     *
+     * @param string $table
+     * @return string
+     */
+    public function compileDropTable($table)
+    {
+        return 'drop table '.$table;
+    }
+
+    /**
+     * Compile the SQL needed to drop a view.
+     *
+     * @param string $table
+     * @return string
+     */
+    public function compileDropView($table)
+    {
+        return 'drop table '.$table;
+    }
+
 }
