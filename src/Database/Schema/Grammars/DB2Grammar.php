@@ -465,7 +465,7 @@ class DB2Grammar extends Grammar
      */
     protected function typeUuid(Fluent $column)
     {
-        return $this->typeString($column);
+        return "varchar(255)";
     }
 
     /**
