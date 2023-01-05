@@ -953,7 +953,7 @@ EOT;
      */
     public function compileGetAllTables()
     {
-        return 'select table_name from information_schema.tables where table_schema = upper(?)';
+        return 'select table_name from information_schema.tables where table_schema = upper(?) and table_type = \'BASE TABLE\'';
     }
 
     /**
