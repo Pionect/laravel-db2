@@ -2,6 +2,7 @@
 
 namespace Cooperl\DB2\Database\Schema\Grammars;
 
+use Illuminate\Database\Query\Builder;
 use Illuminate\Database\Query\Expression;
 use Illuminate\Support\Fluent;
 use Illuminate\Database\Connection;
@@ -976,6 +977,16 @@ EOT;
     public function compileDropView($table)
     {
         return 'drop table '.$table;
+    }
+
+    /**
+     * Compile a truncate table statement into SQL.
+     *
+     * @return array
+     */
+    public function compileTruncate(Builder $query)
+    {
+        return ['truncate table '.$this->wrapTable($query->from) => []];
     }
 
 }
