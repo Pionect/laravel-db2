@@ -257,4 +257,16 @@ class DB2Grammar extends Grammar
     {
         return 'SAVEPOINT '.$name.' ON ROLLBACK RETAIN CURSORS';
     }
+
+    /**
+     * Compile the lock into SQL.
+     *
+     * @param  \Illuminate\Database\Query\Builder  $query
+     * @param  bool|string  $value
+     * @return string
+     */
+    protected function compileLock(Builder $query, $value)
+    {
+        return is_string($value) ? $value : 'for update';
+    }
 }
