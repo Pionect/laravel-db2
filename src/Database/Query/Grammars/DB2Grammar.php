@@ -269,4 +269,15 @@ class DB2Grammar extends Grammar
     {
         return is_string($value) ? $value : 'for update';
     }
+
+    /**
+     * Compile the random statement into SQL.
+     *
+     * @param  string|int  $seed
+     * @return string
+     */
+    public function compileRandom($seed)
+    {
+        return 'RAND('.$seed.')';
+    }
 }
