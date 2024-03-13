@@ -722,6 +722,18 @@ class DB2Grammar extends Grammar
     }
 
     /**
+     * Create the column definition for a ip address type.
+     *
+     * @param  \Illuminate\Support\Fluent $column
+     *
+     * @return string
+     */
+    protected function typeIpAddress(Fluent $column)cache()
+    {
+        return 'string';
+    }
+
+    /**
      * Get the SQL for a nullable column modifier.
      *
      * @param  \Illuminate\Database\Schema\Blueprint $blueprint
