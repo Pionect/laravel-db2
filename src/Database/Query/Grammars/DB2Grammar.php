@@ -23,7 +23,7 @@ class DB2Grammar extends Grammar
      * Offset compatibility mode true triggers FETCH FIRST X ROWS and ROW_NUM behavior for older versions of DB2
      * @var bool
      */
-    protected $offsetCompatibilityMode = true;
+    protected $offsetCompatibilityMode = false;
 
     /**
      * Wrap a single string in keyword identifiers.
