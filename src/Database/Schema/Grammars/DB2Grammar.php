@@ -728,7 +728,7 @@ class DB2Grammar extends Grammar
      *
      * @return string
      */
-    protected function typeIpAddress(Fluent $column)cache()
+    protected function typeIpAddress(Fluent $column)
     {
         return 'string';
     }
