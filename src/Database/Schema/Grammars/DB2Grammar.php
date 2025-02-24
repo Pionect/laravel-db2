@@ -874,7 +874,11 @@ class DB2Grammar extends Grammar
      */
     protected function getDefaultValue($value)
     {
-        if ($value instanceof Expression || is_bool($value) || is_numeric($value)) {
+        if ($value instanceof Expression) {
+            return $this->getValue($value);
+        }
+
+        if (is_bool($value) || is_numeric($value)) {
             return $value;
         }
 
