@@ -968,7 +968,7 @@ EOT;
      *
      * @return string
      */
-    public function compileGetAllTables()
+    public function compileTables()
     {
         return 'select table_name from information_schema.tables where table_schema = upper(?) and table_type = \'BASE TABLE\'';
     }

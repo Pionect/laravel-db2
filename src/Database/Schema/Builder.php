@@ -110,9 +110,9 @@ class Builder extends \Illuminate\Database\Schema\Builder
      *
      * @return array
      */
-    public function getAllTables()
+    public function getTables()
     {
-        $sql = $this->grammar->compileGetAllTables();
+        $sql = $this->grammar->compileTables();
 
         $schema = $this->connection->getDefaultSchema();
 
