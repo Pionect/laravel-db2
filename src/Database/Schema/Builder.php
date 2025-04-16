@@ -63,12 +63,9 @@ class Builder extends \Illuminate\Database\Schema\Builder
             $table,
         ]);
 
-        $res = $this->connection->getPostProcessor()
-                                ->processColumnListing($results);
-
         return array_values(array_map(function($r) {
             return $r->column_name;
-        }, $res));
+        }, $results));
     }
 
     /**
