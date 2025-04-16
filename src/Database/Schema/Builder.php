@@ -128,7 +128,7 @@ class Builder extends \Illuminate\Database\Schema\Builder
     {
         $tables = [];
 
-        foreach ($this->getAllTables() as $row) {
+        foreach ($this->getTables() as $row) {
             $row = (array) $row;
 
             $tables[] = reset($row);
