@@ -454,7 +454,7 @@ class DB2Grammar extends Grammar
      */
     protected function typeJson(Fluent $column)
     {
-        return $this->typeLongText($column);
+        return $this->typeText($column);
     }
 
     /**
@@ -490,7 +490,7 @@ class DB2Grammar extends Grammar
      */
     protected function typeText(Fluent $column)
     {
-        $colLength = ($column->length ? $column->length : 16000);
+        $colLength = ($column->length ? $column->length : 6000);
 
         return "varchar($colLength)";
     }
@@ -504,7 +504,7 @@ class DB2Grammar extends Grammar
      */
     protected function typeMediumText(Fluent $column)
     {
-        $colLength = ($column->length ? $column->length : 16000);
+        $colLength = ($column->length ? $column->length : 10000);
 
         return "varchar($colLength)";
     }
