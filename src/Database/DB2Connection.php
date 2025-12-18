@@ -7,6 +7,7 @@ use PDO;
 use Illuminate\Database\Connection;
 
 use Cooperl\DB2\Database\Schema\Builder;
+use Cooperl\DB2\Database\Query\Builder as QueryBuilder;
 use Cooperl\DB2\Database\Query\Processors\DB2Processor;
 use Cooperl\DB2\Database\Query\Processors\DB2ZOSProcessor;
 use Cooperl\DB2\Database\Query\Grammars\DB2Grammar as QueryGrammar;
@@ -95,6 +96,18 @@ class DB2Connection extends Connection
         }
 
         return new Builder($this);
+    }
+
+    /**
+     * Begin a fluent query against a database table.
+     *
+     * @return \Cooperl\DB2\Database\Query\Builder
+     */
+    public function query()
+    {
+        return new QueryBuilder(
+            $this, $this->getQueryGrammar(), $this->getPostProcessor()
+        );
     }
 
     /**
