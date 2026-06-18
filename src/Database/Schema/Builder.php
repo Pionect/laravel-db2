@@ -81,7 +81,7 @@ class Builder extends \Illuminate\Database\Schema\Builder
             $this->connection->setCurrentSchema($schemaTable[0]);
         }
 
-        $blueprint->build($this->connection, $this->grammar);
+        $blueprint->build();
         $this->connection->resetCurrentSchema();
     }
 
@@ -93,13 +93,15 @@ class Builder extends \Illuminate\Database\Schema\Builder
      *
      * @return \Cooperl\DB2\Database\Schema\Blueprint
      */
-    protected function createBlueprint($table, Closure $callback = null)
+    protected function createBlueprint($table, ?Closure $callback = null)
     {
+        $connection = $this->connection;
+
         if (isset($this->resolver)) {
-            return call_user_func($this->resolver, $table, $callback);
+            return call_user_func($this->resolver, $connection, $table, $callback);
         }
 
-        return new \Cooperl\DB2\Database\Schema\Blueprint($table, $callback);
+        return new \Cooperl\DB2\Database\Schema\Blueprint($connection, $table, $callback);
     }
 
     /**
@@ -107,7 +109,7 @@ class Builder extends \Illuminate\Database\Schema\Builder
      *
      * @return array
      */
-    public function getTables()
+    public function getTables($schema = null)
     {
         $sql = $this->grammar->compileTables();
 

@@ -58,7 +58,7 @@ class DB2Grammar extends Grammar
      *
      * @return string
      */
-    public function compileTableExists()
+    public function compileTableExists($schema = null, $table = null)
     {
         return 'select * from information_schema.tables where table_schema = upper(?) and table_name = upper(?)';
     }
@@ -968,7 +968,7 @@ EOT;
      *
      * @return string
      */
-    public function compileTables()
+    public function compileTables($schema = null)
     {
         return 'select table_name from information_schema.tables where table_schema = upper(?) and table_type = \'BASE TABLE\'';
     }

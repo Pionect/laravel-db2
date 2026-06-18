@@ -9,7 +9,7 @@ class DB2ExpressCGrammar extends DB2Grammar
      *
      * @return string
      */
-    public function compileTableExists()
+    public function compileTableExists($schema = null, $table = null)
     {
         return 'select * from syspublic.all_tables where table_schema = upper(?) and table_name = upper(?)';
     }
