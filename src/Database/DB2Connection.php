@@ -115,7 +115,7 @@ class DB2Connection extends Connection
      */
     protected function getDefaultQueryGrammar()
     {
-        $defaultGrammar = new QueryGrammar;
+        $defaultGrammar = new QueryGrammar($this);
 
         if (array_key_exists('date_format', $this->config)) {
             $defaultGrammar->setDateFormat($this->config['date_format']);
@@ -125,7 +125,7 @@ class DB2Connection extends Connection
             $defaultGrammar->setOffsetCompatibilityMode($this->config['offset_compatibility_mode']);
         }
 
-        return $this->withTablePrefix($defaultGrammar);
+        return $defaultGrammar;
     }
 
     /**
@@ -137,14 +137,10 @@ class DB2Connection extends Connection
     {
         switch ($this->config['driver']) {
             case 'db2_expressc_odbc':
-                $defaultGrammar = $this->withTablePrefix(new DB2ExpressCGrammar);
-                break;
+                return new DB2ExpressCGrammar($this);
             default:
-                $defaultGrammar = $this->withTablePrefix(new SchemaGrammar);
-                break;
+                return new SchemaGrammar($this);
         }
-
-        return $defaultGrammar;
     }
 
     /**

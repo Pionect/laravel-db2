@@ -21,7 +21,6 @@ class Builder extends \Illuminate\Database\Schema\Builder
      */
     public function hasTable($table)
     {
-        $sql = $this->grammar->compileTableExists();
         $schemaTable = explode(".", $table);
 
         if (count($schemaTable) > 1) {
@@ -32,10 +31,9 @@ class Builder extends \Illuminate\Database\Schema\Builder
             $table = $this->connection->getTablePrefix() . $table;
         }
 
-        return count($this->connection->select($sql, [
-                $schema,
-                $table,
-            ])) > 0;
+        $sql = $this->grammar->compileTableExists($schema, $table);
+
+        return (bool) $this->connection->scalar($sql);
     }
 
     /**

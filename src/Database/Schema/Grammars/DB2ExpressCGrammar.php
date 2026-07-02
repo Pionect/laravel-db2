@@ -11,7 +11,11 @@ class DB2ExpressCGrammar extends DB2Grammar
      */
     public function compileTableExists($schema = null, $table = null)
     {
-        return 'select * from syspublic.all_tables where table_schema = upper(?) and table_name = upper(?)';
+        return sprintf(
+            "select count(*) as \"exists\" from syspublic.all_tables where table_schema = upper('%s') and table_name = upper('%s')",
+            $schema,
+            $table
+        );
     }
 
     /**
